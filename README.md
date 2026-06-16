@@ -1,4 +1,5 @@
-Python terminal
+
+Python Terminal
 
 A custom terminal written in Python as a learning project.
 
@@ -6,6 +7,8 @@ Features
 
 * File system navigation (cd, ls)
 * File management (cat, touch, mkdir, cp, mv, rm)
+* Text utilities (edit, echo, grep)
+* Command execution system (run)
 * Command history (history)
 * Built-in system information (neofetch)
 * Basic network requests (curl)
@@ -39,4 +42,4 @@ Current version: 1.4.1
 
 About
 
-This project was created as a personal experiment to learn Python, command parsing, file operations, and terminal development.
+This project was created as a personal experiment to learn Python, command parsing, file operations, and terminal development. It is still in development and may include bugs or unfinished features.
