@@ -1,6 +1,6 @@
 ## Python Terminal by HAYARA
 
-![logo_image](image.png)
+![logo_image](images/image.png)
 
 
 A custom terminal written in Python as a learning project.
