@@ -19,6 +19,9 @@ A custom terminal written in Python as a learning project.
 
 ## Available Commands
 
+![help1](help1.png)
+![help2](help2.png)
+
 * help
 * clear
 * ls
