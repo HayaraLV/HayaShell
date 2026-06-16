@@ -1,4 +1,4 @@
-#Python Terminal
+Python terminal
 
 A custom terminal written in Python as a learning project.
 
