@@ -1,8 +1,11 @@
-Python Terminal
-## Screenshots
+## Python Terminal by HAYARA
+
+![logo_image](image.png)
+
+
 A custom terminal written in Python as a learning project.
 
-Features
+## Features
 
 * File system navigation (cd, ls)
 * File management (cat, touch, mkdir, cp, mv, rm)
@@ -14,7 +17,7 @@ Features
 * Custom command parser
 * Cross-platform Python implementation
 
-Available Commands
+## Available Commands
 
 * help
 * clear
@@ -35,11 +38,10 @@ Available Commands
 * history
 * exit
 
-Version
+## Version
 
 Current version: 1.4.1
 
-About
+## About
 
 This project was created as a personal experiment to learn Python, command parsing, file operations, and terminal development. It is still in development and may include bugs or unfinished features.
-![Terminal example](image.png)
