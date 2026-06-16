@@ -23,6 +23,9 @@ Available Commands
 * mkdir
 * cp
 * mv
+* echo
+* grep
+* run
 * rm
 * history
 * curl
