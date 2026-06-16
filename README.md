@@ -16,20 +16,22 @@ Available Commands
 
 * help
 * clear
-* cd
 * ls
-* cat
-* touch
+* cd
 * mkdir
+* touch
+* cat
+* edit
+* echo
 * cp
 * mv
-* echo
+* rm
 * grep
 * run
-* rm
-* history
-* curl
 * neofetch
+* curl
+* history
+* exit
 
 Version
 
