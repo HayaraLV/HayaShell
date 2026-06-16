@@ -1,6 +1,5 @@
-
 Python Terminal
-
+## Screenshots
 A custom terminal written in Python as a learning project.
 
 Features
@@ -43,3 +42,4 @@ Current version: 1.4.1
 About
 
 This project was created as a personal experiment to learn Python, command parsing, file operations, and terminal development. It is still in development and may include bugs or unfinished features.
+![Terminal example](image.png)
