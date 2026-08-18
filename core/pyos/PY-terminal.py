@@ -3,6 +3,7 @@ import os
 import sys
 import platform
 import subprocess
+from pathlib import Path
 if platform.system() != "Windows":# Безопасно импортируем специфичные библиотеки (чтобы скрипт не падал на Windows)
     import resource
     import ctypes
@@ -30,8 +31,27 @@ BG_CYAN = "\033[46m"
 BG_WHITE = "\033[47m"
 CORE_NAME = "py_OS_MK" #py - python, OS - operational system, MK - micro kernel
 VERSION = "v-1.4.1"
-TERMINAL_HISTORY = "history.txt"
-USER_FILE = "user.txt"
+TERMINAL_HISTORY = []
+def print_tree(directory: Path, prefix: str = ""):
+    """Рекурсивно выводит дерево файлов и папок."""
+    # Получаем список всех элементов и сортируем их (сначала папки, потом файлы)
+    items = sorted(list(directory.iterdir()), key=lambda p: (not p.is_dir(), p.name.lower()))
+    
+    for index, item in enumerate(items):
+        # Проверяем, является ли элемент последним в текущей папке
+        is_last = (index == len(items) - 1)
+        
+        # Выбираем правильные символы для ветки
+        connector = "└── " if is_last else "├── "
+        
+        # Выводим имя элемента с нужным отступом
+        print(f"{prefix}{connector}{item.name}")
+        
+        # Если это папка, заходим внутрь (рекурсия)
+        if item.is_dir():
+            # Настраиваем отступ для подпапок
+            next_prefix = prefix + ("    " if is_last else "│   ")
+            print_tree(item, next_prefix)
 def slowprint(text, speed=0.0001):
     for char in text:
         sys.stdout.write(char)
@@ -58,82 +78,6 @@ def ios_ram_used():
     except Exception:
         pass
     return 0.04 # Заглушка-минимум, если права ограничены
-def password_input(prompt=""):
-    """Кастомный скрытый ввод пароля: маскирует ввод звездочками на ПК и поддерживает a-Shell"""
-    sys.stdout.write(prompt)
-    sys.stdout.flush()
-    
-    sys_name = platform.system()
-    if sys_name == "Windows":
-        # Кроссплатформенный посимвольный ввод для Windows командной строки
-        password = ""
-        while True:
-            ch = msvcrt.getch()
-            if ch in (b'\r', b'\n'): # Нажат Enter
-                print()
-                break
-            elif ch == b'\b': # Нажат Backspace
-                if len(password) > 0:
-                    password = password[:-1]
-                    sys.stdout.write('\b \b') # Стираем звездочку на экране
-                    sys.stdout.flush()
-            else:
-                password += ch.decode('utf-8', errors='ignore')
-                sys.stdout.write('*')
-                sys.stdout.flush()
-        return password
-    else:
-        # Для Unix/iOS (a-Shell устойчив к readline)
-        password = sys.stdin.readline()
-        return password.replace("\n", "").replace("\r", "")
-def user_auth():
-    if not os.path.exists(USER_FILE) or os.path.getsize(USER_FILE) == 0:
-        print(f"{BLUE}=== Firstly system settings ==={RESET}")
-        while True:
-            username = input("Create user login: ").strip()
-            if username:
-                break
-            print(f"{BLUE}Login can't be empty!{RESET}")
-        time.sleep(1)
-        while True:
-            password = password_input("Create password: ")
-            if password:
-                break
-            print(f"{BLUE}Password can't be empty.{RESET}")
-        with open(USER_FILE, "w", encoding="utf-8") as f:
-            f.write(f"{username}:{password}")
-        print(f"{GREEN}Account created succesfully.{RESET}\n")
-        return username
-    else:
-        with open(USER_FILE, "r", encoding="utf-8") as f:
-            saved_username, saved_password = f.read().strip().split(":", 1)
-        print("\033[1;34m==================================================\033[0m")
-        print(f"\033[33m  {CORE_NAME} {VERSION}  //  Secure Authentication\033[0m")
-        print("\033[1;34m==================================================\033[0m")
-        slowprint("Unauthorized access is strictly prohibited.\n")
-        print(f"User: {YELLOW}{saved_username}{RESET}")
-        
-        attempts = 0  # Счетчик неудачных попыток
-        
-        while True: 
-            password = password_input("Enter password: ")
-            if password == saved_password:
-                print(f"\n{YELLOW}Welcome, {saved_username}!{RESET}\n")
-                return saved_username
-            else:
-                attempts += 1
-                print(f"{BLUE}Incorrect password! Try again.{RESET}")
-                
-                # Если пользователь ошибся 3 раза подряд
-                if attempts % 3 == 0:
-                    print(f"{RED}[SECURITY] Too many failed attempts. System locked for 5 seconds...{RESET}")
-                    # Красивый таймер обратного отсчета в консоли
-                    for i in range(5, 0, -1):
-                        sys.stdout.write(f"\rCooldown: {i}s ")
-                        sys.stdout.flush()
-                        time.sleep(1)
-                    print("\r" + " " * 20 + "\r")  # Очищаем строку таймера
-current_user = user_auth()
 def ios_ram():
     """Кроссплатформенный сбор информации об ОЗУ всей ОС (Использовано / Всего)"""
     sys_name = platform.system()
@@ -215,24 +159,24 @@ def get_cpu_name():
         return "Intel/AMD Processor"
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
-slowprint(f"Welcome back, {current_user}.")
+slowprint(f"Welcome back, root.")
 print("Type 'help' to see a list of available commands.\n")
 while True:
     current_dir = os.path.basename(os.getcwd())
     if not current_dir:
         current_dir = "/"
-        
-    user_input = input(f"{YELLOW}{current_user}{BLUE}@os.py-shell:{RESET}[{current_dir}]{BLUE}:~${RESET} ").strip()
+    user_input = input(f"{YELLOW}root{BLUE}@os.py-shell:{RESET}[{current_dir}]{BLUE}:~${RESET} ").strip()
     
     # --- ДОБАВИТЬ СЮДА: Запись каждой команды в файл ---
     if user_input and not user_input.startswith("history") and user_input != "exit":
-        with open(TERMINAL_HISTORY, "a", encoding="utf-8") as f:
-            f.write(user_input + "\n")
+        if not user_input:
+            continue
+        TERMINAL_HISTORY.append(user_input)
     # --------------------------------------------------
     if user_input == "help":
-        script_dir = os.path.dirname(os.path.abspath(__file__))     # 1. Получаем путь к папке 'pyos', где лежит сам скрипт
-        core_dir = os.path.dirname(script_dir)                      # 2. Поднимаемся на уровень вверх в папку 'core'
-        filename = os.path.join(core_dir, "commands", "help.py")    # 3. Строим точный путь к help.py внутри core/commands/
+        script_dir = os.path.dirname(os.path.abspath(__file__))     
+        core_dir = os.path.dirname(script_dir)                      
+        filename = os.path.join(core_dir, "commands", "help.py")    
         if os.path.exists(filename):
             try:
                 with open(filename, "r", encoding="utf-8") as f:
@@ -242,35 +186,28 @@ while True:
                 print(f"{RED}Error:{RESET} {e}")
         else:
             print(f"{RED}FNF: {filename} not found{RESET}")
-        # ... ваш существующий код для help ...
+    elif user_input.startswith("tree"):
+        parts = user_input.split(maxsplit=1)
+        target_path = Path(parts[1]) if len(parts) > 1 else Path(".")
+    
+        if target_path.exists() and target_path.is_dir():
+            print(target_path.name)  # Выводим корень дерева
+            print_tree(target_path)
+        else:
+            print("Ошибка: Указанный путь не существует или не является папкой.")
+
     elif user_input.startswith("history"):
         import os
-        
-        # Разделяем строку по пробелам, чтобы проверить аргументы
-        args = user_input.split()
-        
-        # Если ввели 'history -c'
+        args = user_input.split()        
         if len(args) > 1 and args[1] == "-c":
-            if os.path.exists(TERMINAL_HISTORY):
-                # Способ 1: Очищаем файл, открыв его в режиме 'w' без записи данных
-                with open(TERMINAL_HISTORY, "w", encoding="utf-8") as f:
-                    pass
-                print("История команд успешно очищена.")
-            else:
-                print("История уже пуста.")
+            # Очистка списка в памяти
+            TERMINAL_HISTORY.clear()
                 
-        # Если ввели просто 'history'
         elif user_input == "history":
-            if not os.path.exists(TERMINAL_HISTORY):
+            if not TERMINAL_HISTORY:
                 print("История пуста.")
-            else:
-                with open(TERMINAL_HISTORY, "r", encoding="utf-8") as f:
-                    lines = f.readlines()
-                    if not lines:
-                        print("История пуста.")
-                    else:
-                        for index, line in enumerate(lines, start=1):
-                            print(f"  {index}  {line.strip()}")
+            for index, cmd in enumerate(TERMINAL_HISTORY, 1):
+                print(f" {index}  {cmd}")
                             
         else:
             print(f"Неизвестный аргумент. Используйте 'history' или 'history -c'")
@@ -297,19 +234,19 @@ while True:
             elif sys_name in ["Linux", "Darwin"] and ext not in [".py", ".sh", ""]:
                 print(f"{RED}Error: Unix environment cannot run '{ext}' files.{RESET}")
                 continue
-            print(f"\033[34m[Launch {filename}...]\033[0m")         # ЭТАП 3: ИСПОЛНЕНИЕ
+            print(f"\033[34m[Launch {filename}...]\033[0m")         
             try:
-                if ext == ".py":                                    # Сценарий А: Строго .py файлы уходят в текстовое чтение и exec()
+                if ext == ".py":                                    
                     with open(filename, "r", encoding="utf-8") as f:
                         ile_code = f.read()
-                    sandbox_globals = globals().copy()              # Песочница
-                    sandbox_globals["current_user"] = current_user
+                    sandbox_globals = globals().copy()             
+                    sandbox_globals["current_user"] = "root"
                     sandbox_globals["VERSION"] = VERSION
                     sandbox_locals = {}
                     exec(file_code, sandbox_globals, sandbox_locals)
-                elif sys_name == "Windows" and ext == ".lnk":                                       # Сценарий Б: Нативный запуск ярлыков Windows (.lnk) — БЕЗ чтения файла
-                    subprocess.run(f'start "" "{filename}"', shell=True, check=True)                # Обязательно оборачиваем filename в дополнительные кавычки на случай пробелов в имени
-                else:                                                                               # Сценарий В: Остальные бинарники и консольные скрипты ПК
+                elif sys_name == "Windows" and ext == ".lnk":                                      
+                    subprocess.run(f'start "" "{filename}"', shell=True, check=True)                
+                else:                                                                              
                     if sys_name == "Windows":
                     # Оборачиваем в кавычки для защиты от пробелов в путях на Windows
                         subprocess.run(f'"{filename}"', shell=True, check=True)
@@ -319,14 +256,14 @@ while True:
                         subprocess.run([filename], check=True)
             except Exception as e:
                 print(f"{RED}Error while executing the script:{RESET} {e}")
-            print(f"{YELLOW}[Kernel] {RESET}Initializing.{RESET}")                                  # Красивая имитация загрузки / инициализации процесса
-            scale_width = 30                                                                        # Длина шкалы в символах
+            print(f"{YELLOW}[Kernel] {RESET}Initializing.{RESET}")                                 
+            scale_width = 30                                                                       
             for i in range(scale_width + 1):
                 percent = int((i / scale_width) * 100)
-                bar = SQUARE * i + " " * (scale_width - i)                                          # Формируем строку шкалы: закрашенные квадраты + пустые места                                                                                                                # \r возвращает курсор в начало строки, позволяя обновлять её на лету                   
+                bar = SQUARE * i + " " * (scale_width - i)            
                 sys.stdout.write(f"\r{RESET}[{bar}]{RESET} {percent}% ")
                 sys.stdout.flush()
-                time.sleep(0.015)                                                                    # Небольшая задержка для плавности анимации (всего 0.4 секунды на всю шкалу)
+                time.sleep(0.015)                                                       
             print(f"\n{BLUE}[Success]{RESET} {filename}\n")
         else:
             print(f"{RED}File {RESET}'{filename}'{RED} not found.{RESET}")
@@ -601,7 +538,7 @@ while True:
             
             # Создаем изолированный контекст и передаем туда текущего юзера
                 context = globals().copy()
-                context["current_user"] = current_user  # Передаем имя авторизованного юзера
+                context["current_user"] = "root"  # Передаем имя авторизованного юзера
                 context["VERSION"] = VERSION            # Передаем версию
             
                 exec(file_code, context)
@@ -611,6 +548,8 @@ while True:
             print(f"{RED}FNF: {filename} not found{RESET}")
     elif user_input == "exit":
         sys.exit()
+    elif not user_input:
+        continue
     else:
         # Убираем лишние пробелы и кавычки, если пользователь их ввел
         clean_input = user_input.strip('"\'')
@@ -619,5 +558,5 @@ while True:
             print(f"Launching '{clean_input}' via system core...")
             launch_file(clean_input)
         else:
-            # Если это и не встроенная команда, и не файл в папке, тогда выдаем ошибку
             print("Unknown command or file. Type 'help' to see available commands.")
+    
