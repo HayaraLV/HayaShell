@@ -13,6 +13,7 @@ commands = {
     f"{YELLOW}help{RESET}": "Show this overview",
     f"{YELLOW}clear{RESET}": "Clear the terminal screen",
     f"{YELLOW}ls{RESET}": "List directory contents",
+    f"{YELLOW}tree{RESET}": "Tree of directory contents",
     f"{YELLOW}cd{RESET}": f"Change current directory {BLUE}(Usage: cd [directory_name]){RESET}",
     f"{YELLOW}mkdir{RESET}": "Create a new directory",
     f"{YELLOW}touch{RESET}": f"Create a new empty file {BLUE}(Usage: touch [file_name]){RESET}",
