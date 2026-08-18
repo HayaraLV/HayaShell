@@ -43,7 +43,7 @@ A custom terminal written in Python as a learning project.
 
 ## Version
 
-Current version: 1.4.1
+Current version: 1.4.2
 
 ## About
 
