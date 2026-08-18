@@ -30,7 +30,7 @@ BG_MAGENTA = "\033[45m"
 BG_CYAN = "\033[46m"
 BG_WHITE = "\033[47m"
 CORE_NAME = "py_OS_MK" #py - python, OS - operational system, MK - micro kernel
-VERSION = "v-1.4.1"
+VERSION = "v-1.4.2"
 TERMINAL_HISTORY = []
 def print_tree(directory: Path, prefix: str = ""):
     """Рекурсивно выводит дерево файлов и папок."""
