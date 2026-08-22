@@ -19,9 +19,7 @@ A custom shell written in Python.
 
 ## Available Commands
 
-![help1](images/help1.png)
-![help2](images/help2.png)
-![help3](images/help3.png)
+![helpfull](images/helpfull.png)
 
 ## Version
 
