@@ -55,4 +55,4 @@ Current version: 2.0.0.0
 
 ## About
 
-This project was created as a personal experiment to learn Python, command parsing, file operations, and terminal development. It is still in development and may include bugs or unfinished features.
+A lightweight, cross-platform custom shell written in Python. It replicates core Unix terminal functionality with built-in navigation, file management, basic networking, and system utilities.
