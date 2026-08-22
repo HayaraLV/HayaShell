@@ -7,8 +7,6 @@ A custom shell written in Python.
 
 ## Features
 
-## Features
-
 ###  File System & Navigation
 * **`cd`** — Change the current working directory.
 * **`ls`** — List directory contents.
