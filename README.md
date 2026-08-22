@@ -1,4 +1,4 @@
-## Python Terminal by HAYARA
+## Python Shell by HayaraLV
 
 ![logo_image](images/image.png)
 
