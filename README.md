@@ -3,7 +3,7 @@
 ![logo_image](images/image.png)
 
 
-A custom terminal written in Python as a learning project.
+A custom shell written in Python.
 
 ## Features
 
