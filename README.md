@@ -23,28 +23,9 @@ A custom terminal written in Python as a learning project.
 ![help2](images/help2.png)
 ![help3](images/help3.png)
 
-* help
-* clear
-* ls
-* cd
-* mkdir
-* touch
-* cat
-* edit
-* echo
-* cp
-* mv
-* rm
-* grep
-* run
-* neofetch
-* curl
-* history
-* exit
-
 ## Version
 
-Current version: 1.4.2
+Current version: 2.0.0.0
 
 ## About
 
