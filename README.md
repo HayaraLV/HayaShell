@@ -21,6 +21,7 @@ A custom terminal written in Python as a learning project.
 
 ![help1](images/help1.png)
 ![help2](images/help2.png)
+![help3](images/help3.png)
 
 * help
 * clear
