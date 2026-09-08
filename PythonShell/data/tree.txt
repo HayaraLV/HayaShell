@@ -1,0 +1,23 @@
+│
+├── data
+│   ├── command_list.txt
+│   ├── tree.txt
+│   └── variables.txt
+└── PS
+    ├── configs
+    │   ├── colors.cfg
+    │   └── logo.cfg
+    ├── functions
+    │   ├── file_functions.py
+    │   ├── network_functions.py
+    │   └── system_functions.py
+    ├── loaders
+    │   ├── __init__.py
+    │   ├── color_loader.py
+    │   ├── functions_loader.py
+    │   └── variables_loader.py
+    ├── user
+    │   └── notes.txt
+    ├── utilities
+    │   └── curl.py
+    └── PyShell.py
