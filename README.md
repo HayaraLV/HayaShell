@@ -2,48 +2,47 @@
 
 ![logo_image](images/image.png)
 
-
-A custom shell written in Python.
+A custom, lightweight shell written in Python. It replicates core Unix terminal functionality with built-in navigation, file management, basic networking, and system utilities.
 
 ## Features
 
-###  File System & Navigation
-* **`cd`** — Change the current working directory.
-* **`ls`** — List directory contents.
-* **`tree`** — Display directory structure in a visual tree format.
-* **`mkdir`** — Create new directories.
+### File System & Navigation
+* **cd** — Change the current working directory.
+* **ls** — List directory contents.
+* **tree** — Display directory structure in a visual tree format.
+* **mkdir** — Create a new directory.
 
-###  File & Text Management
-* **`touch`** — Create new empty files.
-* **`cat`** — Concatenate and display file content.
-* **`edit`** — In-terminal text editing utility.
-* **`echo`** — Print text or redirect output to a file.
-* **`note`** — Quick note-taking tool.
-* **`cp`** — Copy files and directories.
-* **`mv`** — Move or rename files and directories.
-* **`rm`** — Remove files and directories.
-* **`grep`** — Search for specific patterns within text.
+### File & Text Management
+* **touch** — Create a new empty file.
+* **cat** — Read and display file contents.
+* **edit** — In-terminal text editor utility to modify files.
+* **echo** — Write text or redirect output to a file.
+* **note** — Quick note-taking tool with creation, retrieval, and tags.
+* **cp** — Copy a file or directory.
+* **mv** — Move or rename a file or directory.
+* **rm** — Remove a file or a directory.
+* **grep** — Search for a specific text pattern inside files.
 
-###  Networking & Execution
-* **`curl`** — Send basic network and HTTP requests.
-* **`ping`** — Check network host connectivity.
+### Networking & Execution
+* **wifi** — Manage Wi-Fi connections (list, connect, disconnect).
+* **curl** — Download files from the internet via URL.
+* **ping** — Check network host connectivity and URL status.
+* **run** — Execute external files, scripts, and system commands.
 
-###  System & Environment
-* **`sys`** — Display brief technical system information.
-* **`neofetch`** — Visual, detailed system information layout.
-* **`date`** — Show current date and time.
-* **`run`** — Execute external system commands.
-* **`clear`** — Clear the terminal screen.
+### System & Environment
+* **sys** — Display technical system information.
+* **neofetch** — Visual, detailed system information layout.
+* **date** — Show current date and time.
+* **clear** — Clear the terminal screen.
 
-###  Terminal Control
-* **`help`** — Show the list of available commands and usage instructions.
-* **`history`** — View the command execution history.
-* **`exit`** — Safely close the terminal session.
+### Terminal Control
+* **help** — Show the overview of available commands and usage instructions.
+* **history** — View and clear the command execution history.
+* **exit** — Shutdown the system or safely close the terminal session.
 
-###  Core Architecture
+### Core Architecture
 * **Custom Command Parser** — Custom-built logic for robust command and argument handling.
 * **Cross-Platform Implementation** — Fully written in Python to ensure seamless compatibility across Windows, macOS, and Linux.
-
 
 ## Available Commands
 
@@ -92,11 +91,6 @@ cd /PythonShell/PS
 sudo python3 PyShell.py
 ```
 
-
 ## Version
 
 Current version: 2.0.0.0
-
-## About
-
-A lightweight, cross-platform custom shell written in Python. It replicates core Unix terminal functionality with built-in navigation, file management, basic networking, and system utilities.
