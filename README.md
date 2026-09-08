@@ -4,6 +4,14 @@
 
 A custom, lightweight shell written in Python. It replicates core Unix terminal functionality with built-in navigation, file management, basic networking, and system utilities.
 
+## Installation
+
+Before running the shell, ensure you have Python 3 installed. Then, clone the repository and install the required external dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Features
 
 ### File System & Navigation
