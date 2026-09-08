@@ -91,6 +91,3 @@ cd /PythonShell/PS
 sudo python3 PyShell.py
 ```
 
-## Версия
-
-Текущая версия: 2.0.0.0
