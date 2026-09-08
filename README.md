@@ -49,6 +49,50 @@ A custom shell written in Python.
 
 ![helpfull](images/helpfull.png)
 
+## How to Run
+
+This program can be executed on Linux, Windows, and macOS. Depending on your operating system, use the appropriate commands below.
+
+### Linux
+The script requires superuser privileges (`sudo`) to function correctly on Linux:
+```bash
+sudo /usr/bin/python3 /home/hayaralv/VsCode/Python/PythonShell/PS/PyShell.py
+```
+Alternatively, navigate to the project directory and run:
+```bash
+cd /home/hayaralv/VsCode/Python/PythonShell/PS/
+sudo python3 PyShell.py
+```
+
+### Windows
+On Windows, use the standard `python` interpreter (or `py` launcher) and backslashes `\` for paths.
+
+**Standard execution:**
+```cmd
+python "C:\Users\hayaralv\VsCode\Python\PythonShell\PS\PyShell.py"
+```
+
+**With Administrator privileges:**
+1. Open **Command Prompt** or **PowerShell** as Administrator.
+2. Execute the following commands:
+```cmd
+cd "C:\Users\hayaralv\VsCode\Python\PythonShell\PS"
+python PyShell.py
+```
+
+### macOS
+macOS uses a Unix path structure where the user's home directory is located under `/Users/`.
+
+```bash
+sudo python3 /Users/hayaralv/VsCode/Python/PythonShell/PS/PyShell.py
+```
+Alternatively, navigate to the project directory and run:
+```bash
+cd /Users/hayaralv/VsCode/Python/PythonShell/PS
+sudo python3 PyShell.py
+```
+
+
 ## Version
 
 Current version: 2.0.0.0
