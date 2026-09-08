@@ -56,11 +56,11 @@ This program can be executed on Linux, Windows, and macOS. Depending on your ope
 ### Linux
 The script requires superuser privileges (`sudo`) to function correctly on Linux:
 ```bash
-sudo /usr/bin/python3 /home/hayaralv/VsCode/Python/PythonShell/PS/PyShell.py
+sudo /usr/bin/python3 /PythonShell/PS/PyShell.py
 ```
 Alternatively, navigate to the project directory and run:
 ```bash
-cd /home/hayaralv/VsCode/Python/PythonShell/PS/
+cd PythonShell/PS/
 sudo python3 PyShell.py
 ```
 
@@ -69,14 +69,14 @@ On Windows, use the standard `python` interpreter (or `py` launcher) and backsla
 
 **Standard execution:**
 ```cmd
-python "C:\Users\hayaralv\VsCode\Python\PythonShell\PS\PyShell.py"
+python "C:\PythonShell\PS\PyShell.py"
 ```
 
 **With Administrator privileges:**
 1. Open **Command Prompt** or **PowerShell** as Administrator.
 2. Execute the following commands:
 ```cmd
-cd "C:\Users\hayaralv\VsCode\Python\PythonShell\PS"
+cd "C:\PythonShell\PS"
 python PyShell.py
 ```
 
@@ -84,11 +84,11 @@ python PyShell.py
 macOS uses a Unix path structure where the user's home directory is located under `/Users/`.
 
 ```bash
-sudo python3 /Users/hayaralv/VsCode/Python/PythonShell/PS/PyShell.py
+sudo python3 /PythonShell/PS/PyShell.py
 ```
 Alternatively, navigate to the project directory and run:
 ```bash
-cd /Users/hayaralv/VsCode/Python/PythonShell/PS
+cd /PythonShell/PS
 sudo python3 PyShell.py
 ```
 
