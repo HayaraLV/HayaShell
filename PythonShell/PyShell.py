@@ -1,6 +1,6 @@
-from loaders.color_loader import *
 from loaders import functions_loader as fl
-from loaders import variables_loader as vr
+from loaders.variables_loader import *
+from loaders.color_loader import *
 import os
 from datetime import datetime
 from pathlib import Path
@@ -27,18 +27,19 @@ commands = {
     "run": fl.run_command,
     "curl": fl.curl_command,
     "ping": fl.ping_command,
+    "wifi": fl.wifi_command,
 }
-fl.slowprint(f"Type '{BLUE}help{RESET}' to see a list of available commands.\n")
+print(f"Type '{YELLOW}help{RESET}' to see a list of available commands.\n")
 while True:
     current_dir = os.getcwd()
     if not current_dir:
         current_dir = "/"
-    user_input = input(f"{YELLOW}{vr.ROOT_NAME}{BLUE}@py-shell:{RESET}{current_dir}{BLUE}:~${RESET} ").strip()
+    user_input = input(f"{YELLOW}┌─[PyShell]~{BLUE}[{current_dir}]{RESET} \n{YELLOW}└─#>{RESET}{YELLOW} ").strip()
     if not user_input:
         continue
     cmd_name = user_input.split()[0]
     if cmd_name != "history" and cmd_name != "exit":
-        vr.TERMINAL_HISTORY.append(user_input)
+        TERMINAL_HISTORY.append(user_input)
     parts = user_input.split(maxsplit=1)
     cmd = parts[0]
     args = parts[1] if len(parts) > 1 else ""
@@ -47,7 +48,7 @@ while True:
     else:
         clean_input = user_input.strip('"\'')
         if os.path.exists(clean_input) and os.path.isfile(clean_input):
-            print(f"Launching '{clean_input}' via system core...")
+            print(f"Launching '{clean_input}'")
             fl.launch_file(clean_input)
         else:
-            print("Unknown command or file. Type 'help' to see available commands.")
+            print(f"\n{RED}Unknown command or file.{RESET} Type {YELLOW}'help'{RESET} to see available commands.\n")
